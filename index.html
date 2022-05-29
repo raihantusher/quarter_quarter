@@ -113,9 +113,9 @@
             
             $('#'+quaters["first"]).addClass("selected-quarter");
             
-            $("#c1_q").val(0).change();
-            $("#c2_q").val(0).change();
-            $("#c3_q").val(0).change();
+            $("#c1_q").val(0);
+            $("#c2_q").val(0);
+            $("#c3_q").val(0);
             
             Print()
         });
@@ -145,6 +145,7 @@
             mother.html(select_table(this.value, 0, 150 ));
 
             $('#'+quaters["first"]).removeClass("selected-quarter");
+
             $('#'+quaters["second"]).addClass("selected-quarter");
             
            
