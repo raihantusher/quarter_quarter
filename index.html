@@ -20,7 +20,7 @@
 
     <div>
         <form>
-           <select name="" id="m_q">
+           <select  id="m_q">
                <option value="" selected></option>
                <option value="nw-0">NW</option>
                <option value="ne-0">NE</option>
@@ -28,7 +28,7 @@
                <option value="se-0">SE</option>
            </select>
 
-           <select name="" id="c1_q">
+           <select id="c1_q">
                <option value="" selected></option>
                <option value="nw">NW</option>
                <option value="ne">NE</option>
@@ -99,6 +99,7 @@
 
          
          $('#m_q').on('change', function() {
+
             if (quaters["first"].length > 0  ) { 
                 $('#'+quaters["first"]).removeClass("selected-quarter");
                  let quarter_name = quaters["first"].split("-")[0]
