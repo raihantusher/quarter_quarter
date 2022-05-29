@@ -7,12 +7,16 @@
     <title>Quarter Tester By Raihan Ahmed</title>
 
 <style>
+    body {
+        background-color: gray;
+        color:wheat;
+    }
     .selected-quarter {
         background-color: green;
         color:white;
         font-size: 20px;
         font-weight: bold;
-        border-color: blue 5px solid;
+        border: purple 3px solid;
     }
 </style>
 </head>
@@ -67,7 +71,7 @@
         </form>
     </div>
     
-    <table border="1">
+    <table border="1" >
         <tr>
             <td width="300px" height="300px" id="nw-0"> 
                 NW
@@ -85,6 +89,10 @@
             </td>
         </tr>
     </table>
+
+    <div style="text-align:center; color:purple">
+        <h1>By @meRaihanTusher</h1>
+    </div>
 
  
 
@@ -209,7 +217,7 @@
             $('#'+quaters["third"]).removeClass("selected-quarter");
             
             $('#'+quaters["fourth"]).addClass("selected-quarter");
-            Print()
+            
         });
         
         
