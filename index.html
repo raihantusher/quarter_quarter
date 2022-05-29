@@ -99,13 +99,24 @@
 
          
          $('#m_q').on('change', function() {
-            if (quaters["first"].length > 0  )
+            if (quaters["first"].length > 0  ) { 
                 $('#'+quaters["first"]).removeClass("selected-quarter");
+                 let quarter_name = quaters["first"].split("-")[0]
+                $('#'+quaters["first"]).text(quarter_name.toUpperCase());
+                
                 quaters["first"] = "";
-
+            }
+            
+            
             quaters["first"] = this.value
             
+            
             $('#'+quaters["first"]).addClass("selected-quarter");
+            
+            $("#c1_q").val(0).change();
+            $("#c2_q").val(0).change();
+            $("#c3_q").val(0).change();
+            
             Print()
         });
 
