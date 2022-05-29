@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    .selected-quarter {
+        background-color: green;
+        color:white;
+        font-size: 20px;
+        font-weight: bold;
+        border-color: blue 5px solid;
+    }
+</style>
+</head>
+<body>
+
+
+    
+    <table border="1">
+        <tr>
+            <td width="300px" height="300px" id="nw-0"> 
+                NW
+            </td>
+            <td width="300px" height="300px" id="ne-0">
+                NE
+            </td>
+        </tr>
+        <tr>
+            <td width="300px" height="300px" id="sw-0"> 
+                SW
+            </td>
+            <td width="300px" height="300px" id="se-0">
+                SE
+            </td>
+        </tr>
+    </table>
+
+     <div>
+         <form>
+            <select name="" id="m_q">
+                <option value="" selected></option>
+                <option value="nw-0">NW</option>
+                <option value="ne-0">NE</option>
+                <option value="sw-0">SW</option>
+                <option value="se-0">SE</option>
+            </select>
+
+            <select name="" id="c1_q">
+                <option value="" selected></option>
+                <option value="nw">NW</option>
+                <option value="ne">NE</option>
+                <option value="sw">SW</option>
+                <option value="se">SE</option>
+                <option value="nh">NH</option>
+                <option value="sh">SH</option>
+                <option value="wh">WH</option>
+                <option value="eh">EH</option>
+            </select>
+            
+            <select id="c2_q">
+                <option value="" selected></option>
+                <option value="nw">NW</option>
+                <option value="ne">NE</option>
+                <option value="sw">SW</option>
+                <option value="se">SE</option>
+                <option value="nh">NH</option>
+                <option value="sh">SH</option>
+                <option value="wh">WH</option>
+                <option value="eh">EH</option>
+            </select>
+            
+            <select  id="c3_q">
+                <option value="" selected></option>
+                <option value="nw">NW</option>
+                <option value="ne">NE</option>
+                <option value="sw">SW</option>
+                <option value="se">SE</option>
+                <option value="nh">NH</option>
+                <option value="sh">SH</option>
+                <option value="wh">WH</option>
+                <option value="eh">EH</option>
+            </select>
+
+         </form>
+     </div>
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script>
+        const quaters = {
+            "first":"",
+            "second":"",
+            "third":"",
+            "fourth":"",
+        }
+
+         
+         $('#m_q').on('change', function() {
+            if (quaters["first"].length > 0  )
+                $('#'+quaters["first"]).removeClass("selected-quarter");
+                quaters["first"] = "";
+
+            quaters["first"] = this.value
+            
+            $('#'+quaters["first"]).addClass("selected-quarter");
+            Print()
+        });
+
+        
+        $('#c1_q').on('change', function() {
+
+            let selected_q = this.value+"-1";
+
+            let mother = null ;
+
+            if (quaters["first"].length == 0  ) {
+                alert("Invalid first quarter item")
+                return
+            } else if (quaters["second"].length > 0  ) {
+                
+                $('#'+quaters["second"]).removeClass("selected-quarter");
+                quaters["second"] = "";
+                // mother object
+                
+            }
+
+            mother = $('#'+ quaters["first"]) ;
+            mother.html('');
+            quaters["second"] = selected_q
+            
+            mother.html(select_table(this.value, 0, 150 ));
+
+            $('#'+quaters["first"]).removeClass("selected-quarter");
+            $('#'+quaters["second"]).addClass("selected-quarter");
+            Print()
+        });
+        
+
+
+        $('#c2_q').on('change', function() {
+
+            let selected_q = this.value+"-2";
+
+            let mother = null ;
+
+            if (quaters["second"].length == 0  ) {
+                alert("Invalid second quarter item")
+                return
+            } else if (quaters["third"].length > 0  ) {
+                $('#'+quaters["third"]).removeClass("selected-quarter");
+                quaters["third"] = "";
+            }
+
+            mother = $('#'+ quaters["second"]) ;
+            mother.html('');
+            quaters["third"] = selected_q
+
+            mother.html(select_table(this.value, 1, 75 ));
+            
+            $('#'+quaters["second"]).removeClass("selected-quarter");
+            $('#'+quaters["third"]).addClass("selected-quarter");
+            Print()
+        });
+        
+        
+        
+        $('#c3_q').on('change', function() {
+            let selected_q = this.value+"-3";
+
+            
+            let mother = null ;
+            
+            if (quaters["third"].length == 0  ) {
+                alert("Invalid third quarter item")
+                return
+            }  else if (quaters["fourth"].length > 0  ) {
+                $('#'+quaters["fourth"]).removeClass("selected-quarter");
+                quaters["fourth"] = "";
+            }
+
+            mother = $('#'+ quaters["third"]) ;
+            mother.html('');
+            quaters["fourth"] = selected_q
+            
+            mother.html(select_table(this.value, 2, 34 ));
+            
+            $('#'+quaters["third"]).removeClass("selected-quarter");
+            
+            $('#'+quaters["fourth"]).addClass("selected-quarter");
+            Print()
+        });
+        
+        
+       function Print () {
+
+        console.log(quaters)
+       }
+
+         
+
+function select_table(q_str, mother_id, square ) {
+    
+    let own = mother_id + 1;
+
+    
+    let table = ''
+    if ( q_str == 'nh' || q_str == 'sh' ) {
+    
+        
+        let width = square * 2 
+        let height = square
+        table = ` <table border="1">
+        <tr>
+            <td width="${width}" height="${height}" id="nh-${own}"> 
+                NH
+            </td>
+        </tr>
+        <tr>
+            <td  width="${width}" height="${height}" id="sh-${own}"> 
+                SH
+            </td>
+        </tr>
+    </table>
+    `;
+    }
+    else if ( q_str == 'wh' || q_str== 'eh' ) {
+
+        let height = square * 2
+        let width = square
+    
+        table = ` <table border="1">
+        <tr height="${height}" width="${width}">
+            <td width="50%px" height="100%" id="wh-${own}"> 
+                WH
+            </td>
+            <td  height="${height}" width="${width}" id="eh-${own}"> 
+                EH
+            </td>
+        </tr>
+    </table>
+    `;
+    } else {
+        let height = square
+        let width = square    
+        table = ` <table border="1">
+        <tr>
+            <td height="${height}" width="${width}" id="nw-${own}"> 
+                NW
+            </td>
+            <td height="${height}" width="${width}" id="ne-${own}">
+                NE
+            </td>
+        </tr>
+        <tr>
+            <td height="${height}" width="${width}" id="sw-${own}"> 
+                SW
+            </td>
+            <td height="${height}" width="${width}" id="se-${own}">
+                SE
+            </td>
+        </tr>
+    </table>
+    `;
+    }
+   
+    
+     return table;
+}
+
+
+
+         
+
+
+    </script>
+</body>
+</html>
